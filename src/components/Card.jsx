@@ -9,9 +9,15 @@ const Card = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Función para validar si un string es un color hexadecimal válido
+  const isValidHexColor = (color) => {
+    const hexRegex = /^#([0-9A-F]{3}){1,2}$/i;
+    return hexRegex.test(color);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name.trim().length >= 3 && color.trim().length >= 6) {
+    if (name.trim().length >= 3 && isValidHexColor(color.trim())) {
       setShowMessage(true);
       setErrorMessage('');
     } else {
@@ -32,6 +38,5 @@ const Card = () => {
     </div>
   );
 };
-
 
 export default Card;
